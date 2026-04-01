@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>What Can I Help You - Perplexity Clone</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Lucide Icons Library -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Markdown-it for rendering AI responses -->
+    <script src="https://cdn.jsdelivr.net/npm/markdown-it@14.1.0/dist/markdown-it.min.js"></script>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                     <i data-lucide="sparkles"></i>
+                </div>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul class="nav-list">
+                    <li class="nav-item active" id="search-nav-btn"><i data-lucide="search"></i><span>Search</span></li>
+                    <li class="nav-item"><i data-lucide="monitor"></i><span>Computer</span></li>
+                    <li class="nav-item" id="new-thread-btn"><i data-lucide="plus-circle"></i><span>New thread</span></li>
+                    <li class="nav-divider"></li>
+                    <li class="nav-item"><i data-lucide="history"></i><span>History</span></li>
+                    <!-- Dynamic Recent Threads -->
+                    <div id="recent-threads-container" class="recent-threads-container"></div>
+                    <li class="nav-item"><i data-lucide="compass"></i><span>Discover</span></li>
+                    <li class="nav-item"><i data-lucide="layers"></i><span>Spaces</span></li>
+                    <li class="nav-divider"></li>
+                    <li class="nav-item"><i data-lucide="trending-up"></i><span>Finance</span></li>
+                    <li class="nav-item"><i data-lucide="heart"></i><span>Health</span></li>
+                    <li class="nav-item"><i data-lucide="more-horizontal"></i><span>More</span></li>
+                </ul>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="upgrade-card">
+                    <i data-lucide="arrow-up-circle"></i>
+                    <span>Upgrade plan</span>
+                    <div class="dot"></div>
+                </div>
+                <div class="user-profile">
+                    <div class="avatar">M</div>
+                    <span class="user-name">m pravallika</span>
+                    <i data-lucide="chevron-right"></i>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <header class="main-header">
+                <div class="header-right">
+                    <div class="scheduled-btn">
+                         <i data-lucide="calendar"></i>
+                         <span>Scheduled</span>
+                         <i data-lucide="chevron-down" style="width:14px; height: 14px;"></i>
+                    </div>
+                </div>
+            </header>
+
+            <section class="hero-section">
+                <h1 class="hero-title">What Can I Help You</h1>
+                
+                <div class="search-container">
+                    <div class="search-box">
+                        <textarea class="search-input" placeholder="Type / for search modes and shortcuts" rows="1"></textarea>
+                        
+                        <!-- File Upload Info Badge -->
+                        <div id="upload-status" class="upload-status hidden">
+                            <i data-lucide="file-text"></i>
+                            <span id="uploaded-filename">Document active</span>
+                            <button id="clear-upload"><i data-lucide="x"></i></button>
+                        </div>
+                        
+                        <div class="search-actions">
+                            <div class="left-actions">
+                                <input type="file" id="pdf-upload" accept=".pdf" style="display: none;">
+                                <button class="action-btn" id="upload-btn"><i data-lucide="plus"></i></button>
+                                <button class="action-btn pill-btn"><i data-lucide="monitor"></i> Computer <i data-lucide="plus" style="width: 14px;"></i></button>
+                            </div>
+                            <div class="right-actions">
+                                <button class="action-btn text-btn">Model <i data-lucide="chevron-down" style="width: 14px;"></i></button>
+                                <button class="action-btn"><i data-lucide="mic"></i></button>
+                                <button class="action-btn dark-btn" id="send-btn"><i data-lucide="audio-lines"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Response Container -->
+                <div id="response-container" class="response-container hidden">
+                    <div class="response-header">
+                        <i data-lucide="sparkles"></i>
+                        <span>Answer</span>
+                    </div>
+                    <div id="response-content" class="markdown-body"></div>
+                </div>
+
+                <div class="intro-footer">
+                    <p class="intro-suggestion">Make the most out of Perplexity</p>
+                    
+                    <div class="card-grid">
+                        <div class="info-card">
+                            <div class="card-icons">
+                                <i data-lucide="sparkle" class="accent-orange"></i>
+                                <i data-lucide="brain-circuit" class="accent-blue"></i>
+                                <i data-lucide="globe" class="accent-gray"></i>
+                                <i data-lucide="bot" class="accent-green"></i>
+                            </div>
+                            <div class="card-content">
+                                <h3>Select a model</h3>
+                                <p>Explore different AI models to find the perfect match for your questions</p>
+                            </div>
+                            <button class="close-card"><i data-lucide="x"></i></button>
+                        </div>
+
+                        <div class="info-card">
+                            <div class="card-icon-large">
+                                <i data-lucide="monitor"></i>
+                            </div>
+                            <div class="card-content">
+                                <h3>Try Computer</h3>
+                                <p>Computer works on any task: building websites, editing documents, analyzing data, and automating repetitive work.</p>
+                            </div>
+                            <button class="close-card"><i data-lucide="x"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="main.js"></script>
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+    </script>
+</body>
+</html>
